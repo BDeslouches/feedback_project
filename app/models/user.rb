@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   # Direct associations
 
+  has_many   :reviews,
+             :foreign_key => "sender_id",
+             :dependent => :destroy
+
   # Indirect associations
 
   # Validations
