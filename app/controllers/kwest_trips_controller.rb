@@ -1,6 +1,6 @@
 class KwestTripsController < ApplicationController
   def index
-    @kwest_trips = KwestTrip.all
+    @kwest_trips = KwestTrip.page(params[:page]).per(10)
 
     render("kwest_trips/index.html.erb")
   end

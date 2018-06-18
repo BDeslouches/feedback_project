@@ -1,6 +1,6 @@
 class SignUpsController < ApplicationController
   def index
-    @sign_ups = SignUp.all
+    @sign_ups = SignUp.page(params[:page]).per(10)
 
     render("sign_ups/index.html.erb")
   end
