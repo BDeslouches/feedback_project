@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h3>Sign Up #<%= @sign_up.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Body</dt>
+      <dd><%= @sign_up.body %></dd>
+
+      <dt>Kwestee</dt>
+      <dd><%= @sign_up.kwestee_id %></dd>
+
+      <dt>Trip</dt>
+      <dd><%= @sign_up.trip_id %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/sign_ups" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/sign_ups/<%= @sign_up.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_sign_up/<%= @sign_up.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
