@@ -8,7 +8,7 @@ class KwestTripsController < ApplicationController
 
   def show
     @sign_up = SignUp.new
-    @review = Review.new
+    @recommendation = Recommendation.new
     @kwest_trip = KwestTrip.find(params[:id])
 
     render("kwest_trips/show.html.erb")
@@ -23,10 +23,9 @@ class KwestTripsController < ApplicationController
   def create
     @kwest_trip = KwestTrip.new
 
-    @kwest_trip.name = params[:name]
-    @kwest_trip.start_date = params[:start_date]
-    @kwest_trip.end_date = params[:end_date]
-    @kwest_trip.enrollment_id = params[:enrollment_id]
+    @kwest_trip.trip_name = params[:trip_name]
+    @kwest_trip.region_name = params[:region_name]
+    @kwest_trip.short = params[:short]
 
     save_status = @kwest_trip.save
 
@@ -53,10 +52,9 @@ class KwestTripsController < ApplicationController
   def update
     @kwest_trip = KwestTrip.find(params[:id])
 
-    @kwest_trip.name = params[:name]
-    @kwest_trip.start_date = params[:start_date]
-    @kwest_trip.end_date = params[:end_date]
-    @kwest_trip.enrollment_id = params[:enrollment_id]
+    @kwest_trip.trip_name = params[:trip_name]
+    @kwest_trip.region_name = params[:region_name]
+    @kwest_trip.short = params[:short]
 
     save_status = @kwest_trip.save
 

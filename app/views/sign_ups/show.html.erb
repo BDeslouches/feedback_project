@@ -5,17 +5,20 @@
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Body</dt>
-      <dd><%= @sign_up.body %></dd>
-
       <dt>Kwestee</dt>
-      <dd><%= @sign_up.kwestee_id %></dd>
+      <dd>
+        <% if @sign_up.kwestee.present? %>
+          <a href="/users/<%= @sign_up.kwestee_id %>">
+            <%= @sign_up.kwestee.email %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Trip</dt>
       <dd>
         <% if @sign_up.trip.present? %>
           <a href="/kwest_trips/<%= @sign_up.trip_id %>">
-            <%= @sign_up.trip.name %>
+            <%= @sign_up.trip.trip_name %>
           </a>
         <% end %>
       </dd>
@@ -26,12 +29,14 @@
       <a href="/sign_ups" class="btn btn-primary">
         Back
       </a>
-      <a href="/sign_ups/<%= @sign_up.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_sign_up/<%= @sign_up.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
+      <% if current_user == @sign_up.kwestee %>
+        <a href="/sign_ups/<%= @sign_up.id %>/edit" class="btn btn-warning">
+          Edit
+        </a>
+        <a href="/delete_sign_up/<%= @sign_up.id %>" class="btn btn-danger" rel="nofollow">
+          Delete
+        </a>
+      <% end %>
     </div>
   </div>
 </div>

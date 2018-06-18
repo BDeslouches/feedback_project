@@ -5,17 +5,14 @@
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Name</dt>
-      <dd><%= @kwest_trip.name %></dd>
+      <dt>Trip name</dt>
+      <dd><%= @kwest_trip.trip_name %></dd>
 
-      <dt>Start date</dt>
-      <dd><%= @kwest_trip.start_date %></dd>
+      <dt>Region name</dt>
+      <dd><%= @kwest_trip.region_name %></dd>
 
-      <dt>End date</dt>
-      <dd><%= @kwest_trip.end_date %></dd>
-
-      <dt>Enrollment</dt>
-      <dd><%= @kwest_trip.enrollment_id %></dd>
+      <dt>Short</dt>
+      <dd><%= @kwest_trip.short %></dd>
 
     </dl>
 
@@ -42,19 +39,19 @@
         Reviews
       </li>
 
-      <% @kwest_trip.reviews.each do |review| %>
+      <% @kwest_trip.reviews.each do |recommendation| %>
         <li class="list-group-item">
-          <a href="/reviews/<%= review.id %>">
-            <%= review.sender_id %>
+          <a href="/recommendations/<%= recommendation.id %>">
+            <%= recommendation.sender_id %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
-            <a href="/reviews/<%= review.id %>" class="btn btn-primary">
+            <a href="/recommendations/<%= recommendation.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
             </a>
-            <a href="/reviews/<%= review.id %>/edit" class="btn btn-warning">
+            <a href="/recommendations/<%= recommendation.id %>/edit" class="btn btn-warning">
               <i class="fa fa-edit"></i>
             </a>
-            <a href="/delete_review/<%= review.id %>" class="btn btn-danger" rel="nofollow">
+            <a href="/delete_recommendation/<%= recommendation.id %>" class="btn btn-danger" rel="nofollow">
               <i class="fa fa-trash-o"></i>
             </a>
           </div>
@@ -62,7 +59,7 @@
       <% end %>
 
       <li class="list-group-item">
-        <form action="/create_review" method="post">
+        <form action="/create_recommendation" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
@@ -75,11 +72,29 @@
           Recipient
         </label>
 
-        <%= select_tag(:recipient_id, options_from_collection_for_select(KwestTrip.all, :id, :name), :class => "form-control") %>
+        <%= select_tag(:recipient_id, options_from_collection_for_select(KwestTrip.all, :id, :trip_name), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for body -->
+      <div class="form-group">
+        <label for="body" class="control-label">
+          Body
+        </label>
+
+        <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"></textarea>
+      </div>
+
+      <!-- Label and input for rec_type -->
+      <div class="form-group">
+        <label for="rec_type" class="control-label">
+          Rec type
+        </label>
+
+        <input type="text" id="rec_type" name="rec_type" placeholder="Rec type" class="form-control" value="">
       </div>
 
       <button class="btn btn-block btn-success">
-        Create Review
+        Create Recommendation
       </button>
     </form>
       </li>
@@ -99,7 +114,7 @@
       <% @kwest_trip.sign_ups.each do |sign_up| %>
         <li class="list-group-item">
           <a href="/sign_ups/<%= sign_up.id %>">
-            <%= sign_up.body %>
+            <%= sign_up.created_at %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/sign_ups/<%= sign_up.id %>" class="btn btn-primary">
@@ -120,23 +135,8 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for body -->
-      <div class="form-group">
-        <label for="body" class="control-label">
-          Body
-        </label>
-
-        <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"></textarea>
-      </div>
-
       <!-- Label and input for kwestee_id -->
-      <div class="form-group">
-        <label for="kwestee_id" class="control-label">
-          Kwestee
-        </label>
-
-        <input type="text" id="kwestee_id" name="kwestee_id" placeholder="Kwestee" class="form-control" value="">
-      </div>
+      <input type="hidden" name="kwestee_id" value="<%= current_user.id %>">
 
       <!-- Label and input for trip_id -->
       <div class="form-group">
@@ -144,7 +144,7 @@
           Trip
         </label>
 
-        <%= select_tag(:trip_id, options_from_collection_for_select(KwestTrip.all, :id, :name), :class => "form-control") %>
+        <%= select_tag(:trip_id, options_from_collection_for_select(KwestTrip.all, :id, :trip_name), :class => "form-control") %>
       </div>
 
       <button class="btn btn-block btn-success">
