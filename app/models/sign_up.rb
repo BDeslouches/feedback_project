@@ -5,6 +5,9 @@ class SignUp < ApplicationRecord
              :class_name => "KwestTrip",
              :counter_cache => true
 
+  belongs_to :kwestee,
+             :class_name => "User"
+
   # Indirect associations
 
   # Validations
