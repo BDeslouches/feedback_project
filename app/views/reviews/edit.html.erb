@@ -27,7 +27,16 @@
           Recipient
         </label>
 
-        <%= select_tag(:recipient_id, options_from_collection_for_select(KwestTrip.all, :id, :name, @review.recipient_id), :class => "form-control") %>
+        <%= select_tag(:recipient_id, options_from_collection_for_select(KwestTrip.all, :id, :trip_name, @review.recipient_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for body -->
+      <div class="form-group">
+        <label for="body" class="control-label">
+          Body
+        </label>
+
+        <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"><%= @review.body %></textarea>
       </div>
 
       <button class="btn btn-warning">
