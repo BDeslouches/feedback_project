@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h1>
+    Kwest trips
+    <a href="/kwest_trips/new" class="btn btn-lg btn-success">New Kwest trip</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Name</th>
+        <th>Start date</th>
+        <th>End date</th>
+        <th>Enrollment</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @kwest_trips.each do |kwest_trip| %>
+      <tr>
+        <td><%= kwest_trip.name %></td>
+        <td><%= kwest_trip.start_date %></td>
+        <td><%= kwest_trip.end_date %></td>
+        <td><%= kwest_trip.enrollment_id %></td>
+        <td>
+          <a href="/kwest_trips/<%= kwest_trip.id %>" class="btn btn-primary">Show</a>
+          <a href="/kwest_trips/<%= kwest_trip.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_kwest_trip/<%= kwest_trip.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
