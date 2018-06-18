@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => "sign_ups#index"
   # Routes for the Kwest_trip resource:
   # CREATE
   get "/kwest_trips/new", :controller => "kwest_trips", :action => "new"
