@@ -12,7 +12,13 @@
       <dd><%= @sign_up.kwestee_id %></dd>
 
       <dt>Trip</dt>
-      <dd><%= @sign_up.trip_id %></dd>
+      <dd>
+        <% if @sign_up.trip.present? %>
+          <a href="/kwest_trips/<%= @sign_up.trip_id %>">
+            <%= @sign_up.trip.name %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 

@@ -16,8 +16,20 @@
 
       <% @reviews.each do |review| %>
       <tr>
-        <td><%= review.sender.email %></td>
-        <td><%= review.trip.name %></td>
+        <td>
+          <% if review.sender.present? %>
+            <a href="/users/<%= review.sender.id %>">
+              <%= review.sender.email %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if review.trip.present? %>
+            <a href="/kwest_trips/<%= review.trip.id %>">
+              <%= review.trip.name %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/reviews/<%= review.id %>" class="btn btn-primary">Show</a>
           

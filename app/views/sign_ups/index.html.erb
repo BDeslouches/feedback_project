@@ -19,7 +19,13 @@
       <tr>
         <td><%= sign_up.body %></td>
         <td><%= sign_up.kwestee_id %></td>
-        <td><%= sign_up.trip.name %></td>
+        <td>
+          <% if sign_up.trip.present? %>
+            <a href="/kwest_trips/<%= sign_up.trip.id %>">
+              <%= sign_up.trip.name %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/sign_ups/<%= sign_up.id %>" class="btn btn-primary">Show</a>
           <a href="/sign_ups/<%= sign_up.id %>/edit" class="btn btn-warning">Edit</a>

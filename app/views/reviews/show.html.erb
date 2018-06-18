@@ -6,10 +6,22 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Sender</dt>
-      <dd><%= @review.sender_id %></dd>
+      <dd>
+        <% if @review.sender.present? %>
+          <a href="/users/<%= @review.sender_id %>">
+            <%= @review.sender.email %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Recipient</dt>
-      <dd><%= @review.recipient_id %></dd>
+      <dd>
+        <% if @review.trip.present? %>
+          <a href="/kwest_trips/<%= @review.recipient_id %>">
+            <%= @review.trip.name %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 
