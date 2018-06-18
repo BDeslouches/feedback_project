@@ -33,6 +33,7 @@ class ReviewsController < ApplicationController
 
     @review.sender_id = params[:sender_id]
     @review.recipient_id = params[:recipient_id]
+    @review.body = params[:body]
 
     save_status = @review.save
 
@@ -59,6 +60,7 @@ class ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     @review.recipient_id = params[:recipient_id]
+    @review.body = params[:body]
 
     save_status = @review.save
 

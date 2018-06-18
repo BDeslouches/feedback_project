@@ -9,6 +9,11 @@
       <p class="lead">Narrow results:</p>
 
         <div class="form-group">
+    <%= f.label :body_cont, "Body contains" %>
+    <%= f.text_field :body_cont, :class => "form-control", :placeholder => "Body contains" %>
+  </div>
+
+<div class="form-group">
           <%= f.label :created_at, "Created at" %>
           <div class="row">
             <div class='col-md-6 mb-1'>
@@ -54,8 +59,8 @@
     </div>
 
 <div class="form-group">
-      <%= f.label :trip_name_cont, "KwestTrip name contains" %>
-      <%= f.text_field :trip_name_cont, :class => "form-control", :placeholder => "KwestTrip name contains" %>
+      <%= f.label :trip_trip_name_cont, "KwestTrip trip_name contains" %>
+      <%= f.text_field :trip_trip_name_cont, :class => "form-control", :placeholder => "KwestTrip trip_name contains" %>
     </div>
 
       <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
@@ -74,6 +79,7 @@
       <tr>
         <th>Sender</th>
         <th>Recipient</th>
+        <th>Body</th>
         <th>Actions</th>
       </tr>
 
@@ -89,10 +95,11 @@
         <td>
           <% if review.trip.present? %>
             <a href="/kwest_trips/<%= review.trip.id %>">
-              <%= review.trip.name %>
+              <%= review.trip.trip_name %>
             </a>
           <% end %>
         </td>
+        <td><%= review.body %></td>
         <td>
           <a href="/reviews/<%= review.id %>" class="btn btn-primary">Show</a>
           
