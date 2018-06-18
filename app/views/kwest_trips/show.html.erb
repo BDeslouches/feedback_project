@@ -60,6 +60,29 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_review" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for sender_id -->
+      <input type="hidden" name="sender_id" value="<%= current_user.id %>">
+
+      <!-- Label and input for recipient_id -->
+      <div class="form-group">
+        <label for="recipient_id" class="control-label">
+          Recipient
+        </label>
+
+        <%= select_tag(:recipient_id, options_from_collection_for_select(KwestTrip.all, :id, :name), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Review
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>
@@ -91,6 +114,44 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_sign_up" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for body -->
+      <div class="form-group">
+        <label for="body" class="control-label">
+          Body
+        </label>
+
+        <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"></textarea>
+      </div>
+
+      <!-- Label and input for kwestee_id -->
+      <div class="form-group">
+        <label for="kwestee_id" class="control-label">
+          Kwestee
+        </label>
+
+        <input type="text" id="kwestee_id" name="kwestee_id" placeholder="Kwestee" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for trip_id -->
+      <div class="form-group">
+        <label for="trip_id" class="control-label">
+          Trip
+        </label>
+
+        <%= select_tag(:trip_id, options_from_collection_for_select(KwestTrip.all, :id, :name), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Sign Up
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>

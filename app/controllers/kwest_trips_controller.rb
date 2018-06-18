@@ -6,6 +6,8 @@ class KwestTripsController < ApplicationController
   end
 
   def show
+    @sign_up = SignUp.new
+    @review = Review.new
     @kwest_trip = KwestTrip.find(params[:id])
 
     render("kwest_trips/show.html.erb")
