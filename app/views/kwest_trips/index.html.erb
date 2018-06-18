@@ -9,101 +9,29 @@
       <p class="lead">Narrow results:</p>
 
         <div class="form-group">
-    <%= f.label :name_cont, "Name contains" %>
-    <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Name contains" %>
+    <%= f.label :trip_name_cont, "Trip name contains" %>
+    <%= f.text_field :trip_name_cont, :class => "form-control", :placeholder => "Trip name contains" %>
   </div>
 
 <div class="form-group">
-  <%= f.label :enrollment_id, "Enrollment" %>
-  <div class="row">
-    <div class='col-md-6 mb-1'>
-      <%= f.text_field :enrollment_id_gteq, :class => "form-control", :placeholder => "Enrollment greater than or equal to" %>
-    </div>
-    <div class='col-md-6'>
-      <%= f.text_field :enrollment_id_lteq, :class => "form-control", :placeholder => "Enrollment less than or equal to" %>
+    <%= f.label :short_eq, "Short" %>
+    <div>
+      <label class="radio-inline">
+        <%= f.radio_button :short_eq, "1", checked: ((params[:q] && params[:q][:short_eq]) == "1" ? "checked" : "") %> Yes
+      </label>
+      <label class="radio-inline">
+        <%= f.radio_button :short_eq, "0", checked: ((params[:q] && params[:q][:short_eq]) == "0" ? "checked" : "")%> No
+      </label>
+      <label class="radio-inline">
+        <%= f.radio_button :short_eq, ""%> Either
+      </label>
     </div>
   </div>
-</div>
 
 <div class="form-group">
-          <%= f.label :end_date, "End date" %>
-          <div class="row">
-            <div class='col-md-6 mb-1'>
-              <div class='input-group date' id='end_dategteqPicker'>
-                  <%= f.text_field :end_date_gteq, :class => "form-control", :placeholder => "End date greater than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-
-            <div class='col-md-6'>
-              <div class='input-group date' id='end_datelteqPicker'>
-                  <%= f.text_field :end_date_lteq, :class => "form-control", :placeholder => "End date less than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-          </div>
-      </div>
-      <script type="text/javascript">
-          $(function () {
-              $('#end_dategteqPicker').datetimepicker({
-                  format: 'MM/DD/YYYY'
-              });
-              $('#end_datelteqPicker').datetimepicker({
-                  useCurrent: false,
-                  format: 'MM/DD/YYYY'
-              });
-              $('#end_dategteqPicker').on("dp.change", function (e) {
-                  $('#end_datelteqPicker').data("DateTimePicker").minDate(e.date);
-              });
-              $('#end_datelteqPicker').on("dp.change", function (e) {
-                  $('#end_dategteqPicker').data("DateTimePicker").maxDate(e.date);
-              });
-          });
-      </script>
-
-<div class="form-group">
-          <%= f.label :start_date, "Start date" %>
-          <div class="row">
-            <div class='col-md-6 mb-1'>
-              <div class='input-group date' id='start_dategteqPicker'>
-                  <%= f.text_field :start_date_gteq, :class => "form-control", :placeholder => "Start date greater than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-
-            <div class='col-md-6'>
-              <div class='input-group date' id='start_datelteqPicker'>
-                  <%= f.text_field :start_date_lteq, :class => "form-control", :placeholder => "Start date less than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-          </div>
-      </div>
-      <script type="text/javascript">
-          $(function () {
-              $('#start_dategteqPicker').datetimepicker({
-                  format: 'MM/DD/YYYY'
-              });
-              $('#start_datelteqPicker').datetimepicker({
-                  useCurrent: false,
-                  format: 'MM/DD/YYYY'
-              });
-              $('#start_dategteqPicker').on("dp.change", function (e) {
-                  $('#start_datelteqPicker').data("DateTimePicker").minDate(e.date);
-              });
-              $('#start_datelteqPicker').on("dp.change", function (e) {
-                  $('#start_dategteqPicker').data("DateTimePicker").maxDate(e.date);
-              });
-          });
-      </script>
+    <%= f.label :region_name_cont, "Region name contains" %>
+    <%= f.text_field :region_name_cont, :class => "form-control", :placeholder => "Region name contains" %>
+  </div>
 
 <div class="form-group">
           <%= f.label :created_at, "Created at" %>
@@ -146,9 +74,44 @@
       </script>
 
         <div class="form-group">
-      <%= f.label :sign_ups_body_cont, "SignUp body contains" %>
-      <%= f.text_field :sign_ups_body_cont, :class => "form-control", :placeholder => "SignUp body contains" %>
-    </div>
+          <%= f.label :created_at, "SignUp Created at" %>
+          <div class="row">
+            <div class='col-md-6 mb-1'>
+              <div class='input-group date' id='sign_upsgteqcreated_atPicker'>
+                  <%= f.text_field :sign_ups_created_at_gteq, :class => "form-control", :placeholder => "SignUp Created at greater than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+
+            <div class='col-md-6'>
+              <div class='input-group date' id='sign_upslteqcreated_atPicker'>
+                  <%= f.text_field :sign_ups_created_at_lteq, :class => "form-control", :placeholder => "SignUp Created at less than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+          </div>
+      </div>
+      <script type="text/javascript">
+          $(function () {
+              $('#sign_upsgteqcreated_atPicker').datetimepicker({
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#sign_upslteqcreated_atPicker').datetimepicker({
+                  useCurrent: false,
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#sign_upsgteqcreated_atPicker').on("dp.change", function (e) {
+                  $('#sign_upslteqcreated_atPicker').data("DateTimePicker").minDate(e.date);
+              });
+              $('#sign_upslteqcreated_atPicker').on("dp.change", function (e) {
+                  $('#sign_upsgteqcreated_atPicker').data("DateTimePicker").maxDate(e.date);
+              });
+          });
+      </script>
 
       <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
 
@@ -164,19 +127,17 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
-        <th>Name</th>
-        <th>Start date</th>
-        <th>End date</th>
-        <th>Enrollment</th>
+        <th>Trip name</th>
+        <th>Region name</th>
+        <th>Short</th>
         <th>Actions</th>
       </tr>
 
       <% @kwest_trips.each do |kwest_trip| %>
       <tr>
-        <td><%= kwest_trip.name %></td>
-        <td><%= kwest_trip.start_date %></td>
-        <td><%= kwest_trip.end_date %></td>
-        <td><%= kwest_trip.enrollment_id %></td>
+        <td><%= kwest_trip.trip_name %></td>
+        <td><%= kwest_trip.region_name %></td>
+        <td><%= kwest_trip.short %></td>
         <td>
           <a href="/kwest_trips/<%= kwest_trip.id %>" class="btn btn-primary">Show</a>
           <a href="/kwest_trips/<%= kwest_trip.id %>/edit" class="btn btn-warning">Edit</a>

@@ -1,10 +1,9 @@
 class CreateKwestTrips < ActiveRecord::Migration
   def change
     create_table :kwest_trips do |t|
-      t.text :name
-      t.date :start_date
-      t.date :end_date
-      t.integer :enrollment_id
+      t.text :trip_name
+      t.string :region_name
+      t.boolean :short
 
       t.timestamps
 

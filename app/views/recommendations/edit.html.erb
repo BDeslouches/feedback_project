@@ -1,0 +1,58 @@
+<!-- Validation failure messages -->
+<% if @recommendation.errors.any? %>
+  <% @recommendation.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Recommendation #<%= @recommendation.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_recommendation/<%= @recommendation.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      
+      
+
+      <!-- Label and input for recipient_id -->
+      <div class="form-group">
+        <label for="recipient_id" class="control-label">
+          Recipient
+        </label>
+
+        <%= select_tag(:recipient_id, options_from_collection_for_select(KwestTrip.all, :id, :trip_name, @recommendation.recipient_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for body -->
+      <div class="form-group">
+        <label for="body" class="control-label">
+          Body
+        </label>
+
+        <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"><%= @recommendation.body %></textarea>
+      </div>
+
+      <!-- Label and input for rec_type -->
+      <div class="form-group">
+        <label for="rec_type" class="control-label">
+          Rec type
+        </label>
+
+        <input type="text" id="rec_type" name="rec_type" placeholder="Rec type" class="form-control" value="<%= @recommendation.rec_type %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Recommendation
+      </button>
+      or
+      <a href="/recommendations/<%= @recommendation.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
