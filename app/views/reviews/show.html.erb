@@ -18,10 +18,13 @@
       <dd>
         <% if @review.trip.present? %>
           <a href="/kwest_trips/<%= @review.recipient_id %>">
-            <%= @review.trip.name %>
+            <%= @review.trip.trip_name %>
           </a>
         <% end %>
       </dd>
+
+      <dt>Body</dt>
+      <dd><%= @review.body %></dd>
 
     </dl>
 
