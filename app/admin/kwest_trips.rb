@@ -1,6 +1,6 @@
 ActiveAdmin.register KwestTrip do
 
- permit_params :name, :start_date, :end_date, :enrollment_id
+ permit_params :trip_name, :region_name, :short
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #

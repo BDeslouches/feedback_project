@@ -1,14 +1,24 @@
 <div class="page-header">
   <h1>
-    Reviews
-    <a href="/reviews/new" class="btn btn-lg btn-success">New Review</a>
+    Recommendations
+    <a href="/recommendations/new" class="btn btn-lg btn-success">New Recommendation</a>
   </h1>
 </div><div class="row mb-1">
   <div class="col-md-12">
-    <%= search_form_for @q, :class => collapse_search_form, :id => "reviews_filters" do |f| %>
+    <%= search_form_for @q, :class => collapse_search_form, :id => "recommendations_filters" do |f| %>
       <p class="lead">Narrow results:</p>
 
         <div class="form-group">
+    <%= f.label :rec_type_cont, "Rec type contains" %>
+    <%= f.text_field :rec_type_cont, :class => "form-control", :placeholder => "Rec type contains" %>
+  </div>
+
+<div class="form-group">
+    <%= f.label :body_cont, "Body contains" %>
+    <%= f.text_field :body_cont, :class => "form-control", :placeholder => "Body contains" %>
+  </div>
+
+<div class="form-group">
           <%= f.label :created_at, "Created at" %>
           <div class="row">
             <div class='col-md-6 mb-1'>
@@ -54,15 +64,15 @@
     </div>
 
 <div class="form-group">
-      <%= f.label :trip_name_cont, "KwestTrip name contains" %>
-      <%= f.text_field :trip_name_cont, :class => "form-control", :placeholder => "KwestTrip name contains" %>
+      <%= f.label :trip_trip_name_cont, "KwestTrip trip_name contains" %>
+      <%= f.text_field :trip_trip_name_cont, :class => "form-control", :placeholder => "KwestTrip trip_name contains" %>
     </div>
 
       <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
 
-      <a href="/reviews" class="btn btn-default btn-block mb-1">Clear filters</a>
+      <a href="/recommendations" class="btn btn-default btn-block mb-1">Clear filters</a>
     <% end %>
-    <a class="btn btn-default btn-block mb-1" data-toggle="collapse" href="#reviews_filters">
+    <a class="btn btn-default btn-block mb-1" data-toggle="collapse" href="#recommendations_filters">
       Show Filters
     </a>
   </div>
@@ -74,36 +84,40 @@
       <tr>
         <th>Sender</th>
         <th>Recipient</th>
+        <th>Body</th>
+        <th>Rec type</th>
         <th>Actions</th>
       </tr>
 
-      <% @reviews.each do |review| %>
+      <% @recommendations.each do |recommendation| %>
       <tr>
         <td>
-          <% if review.sender.present? %>
-            <a href="/users/<%= review.sender.id %>">
-              <%= review.sender.email %>
+          <% if recommendation.sender.present? %>
+            <a href="/users/<%= recommendation.sender.id %>">
+              <%= recommendation.sender.email %>
             </a>
           <% end %>
         </td>
         <td>
-          <% if review.trip.present? %>
-            <a href="/kwest_trips/<%= review.trip.id %>">
-              <%= review.trip.name %>
+          <% if recommendation.trip.present? %>
+            <a href="/kwest_trips/<%= recommendation.trip.id %>">
+              <%= recommendation.trip.trip_name %>
             </a>
           <% end %>
         </td>
+        <td><%= recommendation.body %></td>
+        <td><%= recommendation.rec_type %></td>
         <td>
-          <a href="/reviews/<%= review.id %>" class="btn btn-primary">Show</a>
+          <a href="/recommendations/<%= recommendation.id %>" class="btn btn-primary">Show</a>
           
-          <% if current_user == review.sender %>
-            <a href="/reviews/<%= review.id %>/edit" class="btn btn-warning">Edit</a>
-            <a href="/delete_review/<%= review.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <% if current_user == recommendation.sender %>
+            <a href="/recommendations/<%= recommendation.id %>/edit" class="btn btn-warning">Edit</a>
+            <a href="/delete_recommendation/<%= recommendation.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
           <% end %>
         </td>
       </tr>
       <% end %>
     </table>
-    <%= paginate @reviews, theme: 'twitter-bootstrap-4' %>
+    <%= paginate @recommendations, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>
