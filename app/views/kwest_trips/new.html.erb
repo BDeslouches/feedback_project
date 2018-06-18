@@ -18,40 +18,30 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for name -->
+      <!-- Label and input for trip_name -->
       <div class="form-group">
-        <label for="name" class="control-label">
-          Name
+        <label for="trip_name" class="control-label">
+          Trip name
         </label>
 
-        <textarea id="name" name="name" placeholder="Name" class="form-control" rows="3"><%= @kwest_trip.name %></textarea>
+        <textarea id="trip_name" name="trip_name" placeholder="Trip name" class="form-control" rows="3"><%= @kwest_trip.trip_name %></textarea>
       </div>
 
-      <!-- Label and input for start_date -->
+      <!-- Label and input for region_name -->
       <div class="form-group">
-        <label for="start_date" class="control-label">
-          Start date
+        <label for="region_name" class="control-label">
+          Region name
         </label>
 
-        <input type="text" id="start_date" name="start_date" placeholder="Start date" class="form-control" value="<%= @kwest_trip.start_date %>">
+        <input type="text" id="region_name" name="region_name" placeholder="Region name" class="form-control" value="<%= @kwest_trip.region_name %>">
       </div>
 
-      <!-- Label and input for end_date -->
-      <div class="form-group">
-        <label for="end_date" class="control-label">
-          End date
+      <!-- Label and input for short -->
+      <div class="checkbox">
+        <label for="short">
+          <input type="checkbox" id="short" name="short" value="1" <%= "checked" if @kwest_trip.short %>>
+          Short
         </label>
-
-        <input type="text" id="end_date" name="end_date" placeholder="End date" class="form-control" value="<%= @kwest_trip.end_date %>">
-      </div>
-
-      <!-- Label and input for enrollment_id -->
-      <div class="form-group">
-        <label for="enrollment_id" class="control-label">
-          Enrollment
-        </label>
-
-        <input type="text" id="enrollment_id" name="enrollment_id" placeholder="Enrollment" class="form-control" value="<%= @kwest_trip.enrollment_id %>">
       </div>
 
       <button class="btn btn-success">
