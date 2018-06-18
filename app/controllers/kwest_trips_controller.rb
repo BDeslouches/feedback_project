@@ -1,6 +1,7 @@
 class KwestTripsController < ApplicationController
   def index
-    @kwest_trips = KwestTrip.page(params[:page]).per(10)
+    @q = KwestTrip.ransack(params[:q])
+    @kwest_trips = @q.result(:distinct => true).includes(:reviews, :sign_ups).page(params[:page]).per(10)
 
     render("kwest_trips/index.html.erb")
   end
