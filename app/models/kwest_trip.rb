@@ -6,6 +6,7 @@ class KwestTrip < ApplicationRecord
              :dependent => :destroy
 
   has_many   :reviews,
+             :class_name => "Recommendation",
              :foreign_key => "recipient_id",
              :dependent => :destroy
 
