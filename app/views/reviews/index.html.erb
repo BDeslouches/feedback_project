@@ -16,7 +16,7 @@
 
       <% @reviews.each do |review| %>
       <tr>
-        <td><%= review.sender_id %></td>
+        <td><%= review.sender.email %></td>
         <td><%= review.recipient_id %></td>
         <td>
           <a href="/reviews/<%= review.id %>" class="btn btn-primary">Show</a>
